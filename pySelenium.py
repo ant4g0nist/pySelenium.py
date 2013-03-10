@@ -20,11 +20,12 @@ def primes_sum(limit):
 
 
 driver = webdriver.Firefox()
-driver.get("http://backdoor-problems.cognizance.org.in/misc75/misc75.php")
-a=driver.find_element_by_xpath("//p")
-b=a.text.split(" ")
-answer=primes_sum(int(b[len(b)-4]))
-elem = driver.find_element_by_name("answer")
-elem.send_keys(answer)
-elem.send_keys(Keys.RETURN)
-time.sleep(3)
+while(1):
+	driver.get("http://backdoor-problems.cognizance.org.in/misc75/misc75.php")
+	a=driver.find_element_by_xpath("//p").text.split(" ")
+
+	answer=primes_sum(int(a[len(a)-4]))
+	elem = driver.find_element_by_name("answer").send_keys(answer)
+	elem=driver.find_elements_by_xpath("//*[@type='submit']")[0].click()
+
+	time.sleep(3)
